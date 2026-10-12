@@ -1,0 +1,8 @@
+const res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=YOUR_KEY`);
+const movies = (await res.json()).results.map(m => ({
+  id: m.id, title: m.title, year: m.release_date.slice(0,4),
+  rating: m.vote_average, popularity: m.popularity,
+  poster: "https://image.tmdb.org/t/p/w500" + m.poster_path,
+  backdrop: "https://image.tmdb.org/t/p/w1280" + m.backdrop_path,
+  // ...map genres, runtime, credits via /movie/{id} endpoints
+}));
